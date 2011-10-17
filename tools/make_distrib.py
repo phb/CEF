@@ -124,7 +124,8 @@ if options.outputdir is None:
   sys.exit()
 
 # retrieve revision and date information
-cef_rev = get_revision()
+#get_revision()
+cef_rev = "1"
 chromium_rev = get_revision('../../')
 date = get_date()
 

@@ -257,17 +257,6 @@ if chromium_url_changed or chromium_rev_changed or options.forceupdate:
   run('gclient sync --revision src@'+chromium_rev+' --jobs 8 --force', \
       chromium_dir, depot_tools_dir)
 
-if not os.path.exists(cef_src_dir) or cef_url_changed:
-  if cef_url_changed and os.path.exists(cef_src_dir):
-    # delete the cef directory (it will be re-downloaded)
-    shutil.rmtree(cef_src_dir)
-    
-  # download the CEF source code
-  run('svn checkout '+cef_url+' -r '+cef_rev+' '+cef_src_dir, download_dir)
-elif cef_rev_changed or options.forceupdate:
-  # update the CEF source code
-  run('svn update -r '+cef_rev+' '+cef_src_dir, download_dir)
-
 if any_changed or options.forceupdate:
   # create CEF projects
   path = os.path.join(cef_src_dir, 'cef_create_projects'+script_ext)
